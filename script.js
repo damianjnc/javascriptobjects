@@ -207,7 +207,7 @@ function game() {
 
 }
 game(); */
-
+/*
 
 (function () {
     var score = Math.random()*10;
@@ -222,3 +222,152 @@ console.log(score);
 })(5);
 
 console.log(score);
+
+*/
+
+/*
+var john = {
+    name: 'John',
+    age: 20,
+    job: 'teacher',
+    presentation: function (style, timeOfDay) {
+        if(style === 'formal'){
+            console.log('Good' + timeOfDay + 'Ladies and Gentleman. I\'m ' + this.name + 'I\'am a ' + this.job + 'I\'m ' + this.age +
+            ' years old.');
+        }else if(style === 'friendly'){
+            console.log('Hey, what\'s up, ' + 'I\'m ' + this.name + 'Iam a ' + this.job + 'I\'m ' + this.age );
+        }
+
+    }
+}
+
+*/
+
+/*
+function  interviewQuestion(job) {
+    if(job === 'designer'){
+        return function (name) {
+            console.log(job + ', can you please explain what UX design is?');
+
+
+        }
+    }else if(job === 'teacher'){
+        return function (name) {
+            console.log('What subject do you teach, ' + job + '?');
+
+        }
+
+
+    }else{
+        return function (name) {
+            console.log('What do you do, ' + job + '?');
+
+        }
+    }
+
+}
+
+var teacherQuestion = interviewQuestion('teacher');
+
+teacherQuestion('John');
+
+function interviewQuestion1(job){
+    return function (name) {
+        if(job==='designer'){
+            console.log(name+job);
+        }else{console.log('hello')}
+
+    }
+}
+
+interviewQuestion1('designer')('jonny');
+
+function interviewQuestion2(name){
+    return function (job) {
+        if(job==='designer'){
+            console.log(name+job);
+        }else{console.log('hello')}
+
+    }
+}
+interviewQuestion2('jonny')('designer');
+
+*/
+function retirement(retirementAge) {
+    var a = ' years left until retirement.';
+    return function (yearOfBirth) {
+        var age = 2016 - yearOfBirth;
+        console.log((retirementAge -age) + a);
+
+    }
+
+}
+var retirementUS = retirement(66);
+retirementUS(1990);
+retirement(66)(1990);
+var retirementKongo = retirement(66)(1990);
+
+
+
+var john = {
+    name: 'John',
+    age: 20,
+    job: 'teacher',
+    presentation: function (style, timeOfDay) {
+        if(style === 'formal'){
+            console.log('Good ' + timeOfDay + ' Ladies and Gentleman. I\'m ' + this.name + ' and I\'am a ' + this.job + '. I\'m ' + this.age +
+                ' years old.');
+        }else if(style === 'friendly'){
+            console.log('Hey, what\'s up, ' + ' I\'m ' + this.name + ' Iam a ' + this.job + ' I\'m ' + this.age );
+        }
+
+    }
+}
+
+john.presentation('formal', 'morning');
+
+
+
+var emily = {
+    name: 'Emily',
+    age: 35,
+    job: 'designer'
+};
+
+john.presentation.call(emily, 'friendly', 'afternoon');
+
+//john.presentation.apply(emily, ['friendly', 'afternoon']);
+
+var johnFriendly = john.presentation.bind(john, 'formal');
+johnFriendly('morning');
+johnFriendly('night');
+
+var emilyFormal = john.presentation.bind(emily, 'formal');
+emilyFormal('morning');
+
+
+var years = [1990, 1965, 1937, 2005, 1998];
+function arrayCalcForFunction(arr, fn) {
+    var arrRes = [];
+    for(var i = 0; i<arr.length; i++){
+        arrRes.push(fn(arr[i]));
+    }
+    return arrRes;
+}
+
+function calculateAge(el) {
+    return 2016 - el;
+
+}
+
+function isFullAge(limit, el) {
+
+    return el >= limit;
+
+}
+
+var ages =arrayCalcForFunction(years, calculateAge);
+
+var fullJapan = arrayCalcForFunction(ages, isFullAge.bind(this, 20));
+console.log(ages);
+console.log(fullJapan);
